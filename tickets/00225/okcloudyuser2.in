@@ -1,0 +1,77 @@
+# ======================
+print off  
+elements read  
+helium  
+carbon  
+nitrogen  
+oxygen  
+neon  
+sulphur  
+chlorine  
+argon  
+sodium  
+magnesium  
+aluminium  
+silicon  
+calcium  
+iron  
+nickel  
+end of elements  
+element off lithium  
+element off beryllium  
+element off boron  
+element off fluorine  
+element off phosphorus  
+element off potasium  
+element off scandium  
+element off titanium  
+element off vanadium  
+element off chromium  
+element off manganese  
+element off cobalt  
+element off copper  
+element off zinc  
+print on  
+#  ------> grid <------  
+# ************SET ABUNDANCES HERE***********************************  
+#  
+abund he=-1.03 c=-4.30 n=-4.83 o=-3.96 ne=-4.60 s=-6.02 cl=-7.08 ar=-6.43  
+continue na=-6.99 mg=-5.72 al=-6.83 si=-5.75 ca=-6.94 fe=-5.79 ni=-7.05  
+#  
+# ************SET STELLAR AND NEBULAR PARAMETERS HERE***************  
+black body, T=95000K  
+luminosity = 35.9  
+radius 17.0  
+dlaw table depth  
+continue -40 4  
+continue 12 4  
+continue 13 5  
+continue 14 6  
+continue 18 7  
+end of dlaw  
+metals and grains 1.0  
+filling factor=1  
+#  
+# *************SET EXECUTING AND PRINTING PARAMETERS HERE************  
+normalize to "H  1" 4861.33 scale factor=100  
+constant density  
+stop thickness -0.01 parsec  
+sphere static  
+iterate 2  
+print last  
+save lines zone cumulative last "lines.out"  
+Blnd 3727
+O  3 4363.21
+He 2 4685.64
+O  3 5006.84
+He 1 5875.64
+S  2 6716.44
+S  2 6730.82
+H  1 4861.33
+end of lines  
+#  
+# *************END OF CLOUDY.INI FILE*********************************  
+#  
+# ======================
+
+

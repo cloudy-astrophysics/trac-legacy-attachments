@@ -1,0 +1,78 @@
+ PROBLEM DISASTER
+ An assert has been thrown, this is bad.
+ Failed: fp_equal_tol(tot1, tot2, conv.GasPhaseAbundErrorAllowed*tot1 + 100.f*FLT_MIN)
+ It happened in the file ion_solver.cpp at line number 604
+ This is iteration 1, nzone 0, fzone 1.44, lgSearch=T.
+
+
+
+           vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv 
+          > PROBLEM DISASTER PROBLEM DISASTER.      <
+          > Sorry, something bad has happened.      <
+          > Please post this on the Cloudy web site <
+          > discussion board at www.nublado.org     <
+          > Please send all following information:  <
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
+
+ Cloudy version number is (newmole, r5917, experimental)
+ Cloudy compiled on Feb 22 2012 in OS Linux (IA32) using the g++ 40406 compiler. Mode ILP32, denormalized float: T double: T.
+
+    0 warnings,  0 cautions,  0 temperature failures.  Messages follow.
+ Input commands follow:
+c ======================
+COROnal equilibrium 2.900000 LOG
+grid range from 1.0 to 8.0 with 0.05  
+cosmic rays background  
+stop temperature off  
+radius 17.5  
+hden 0.0  
+metals and grains 3  
+atom H2  
+stop zone 1  
+save cooling "cooling.out" last no hash  
+save grid "grid.out" last no hash  
+save overview "overview.out" last no hash  
+c ======================
+
+
+
+
+
+PROBLEM non-conservation of nuclei V	 nzone 0 atoms 3.000029855128e-07 moles 0.000000000000e+00 sum 3.000029855128e-07 tot gas 2.999999821895e-07 rel err 1.001e-05
+
+
+
+ PROBLEM DISASTER
+ An assert has been thrown, this is bad.
+ Failed: lgElemsConserved()
+ It happened in the file ion_solver.cpp at line number 1453
+ This is iteration 1, nzone 0, fzone 1.09, lgSearch=T.
+
+
+
+           vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv 
+          > PROBLEM DISASTER PROBLEM DISASTER.      <
+          > Sorry, something bad has happened.      <
+          > Please post this on the Cloudy web site <
+          > discussion board at www.nublado.org     <
+          > Please send all following information:  <
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
+
+ Cloudy version number is (newmole, r5917, experimental)
+ Cloudy compiled on Feb 22 2012 in OS Linux (IA32) using the g++ 40406 compiler. Mode ILP32, denormalized float: T double: T.
+
+    0 warnings,  0 cautions,  0 temperature failures.  Messages follow.
+ Input commands follow:
+c ======================
+COROnal equilibrium 2.900000 LOG
+grid range from 2.5 to 8.0 with 0.05  
+cosmic rays background  
+stop temperature off  
+radius 17.5  
+hden 1.0  
+metals and grains 3  
+atom H2  
+stop zone 1  
+c ======================

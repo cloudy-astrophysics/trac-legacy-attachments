@@ -1,0 +1,15 @@
+print off                                             
+abundances old solar 84                               
+CMB                                                   
+table star Rauch, temp=50000.000000  halo log(g)6.5   
+luminosity solar 3.100000                             
+radius 17.0                                           
+hden = 3.0                                            
+metals and grains 0.300000                            
+filling factor=1                                      
+normalize to "h  1" 4861 scale factor=100             
+constant density                                      
+sphere static                                         
+stop temp=100K                                        
+iterations=2                                          
+print last                                            

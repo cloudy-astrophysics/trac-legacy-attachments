@@ -1,0 +1,41 @@
+Index: atmdat_chianti.cpp
+===================================================================
+--- atmdat_chianti.cpp	(revision 9938)
++++ atmdat_chianti.cpp	(working copy)
+@@ -1753,10 +1753,6 @@
+ 			if( !lgProtonData )
+ 				break;
+ 			strcpy( chFilename, chProColFilename );
+-			if( !t_version::Inst().lgReleaseBranch && !t_version::Inst().lgRelease && prt.lgPrintTime )
+-				fprintf( ioQQQ,"Warning: Chianti proton collision data not supported in %s (skipped)\n",
+-					 chFilename );
+-			break;
+ 		}
+ 		else
+ 			TotalInsanity();
+@@ -1941,10 +1937,8 @@
+ 						{
+ 							fprintf(ioQQQ,"\t%.3e",temp);
+ 						}
+-						if(temp < 0)
+-						{
+-							temp = 0.;
+-						}
++						if( intTranType < 6 )
++							temp = max( temp, 0. );
+ 						AtmolCollSplines[intNS][ipHi][ipLo][ipCollider].collspline[intsplinepts] = temp;
+ 					}
+ 
+Index: species2.cpp
+===================================================================
+--- species2.cpp	(revision 9938)
++++ species2.cpp	(working copy)
+@@ -795,7 +795,7 @@
+ 
+ 	/* NB NB - if proton colliders, the upsilons returned here are actually already rate coefficients. */
+ 	/* these are designated by a collider index and a transition type */
+-	if( ipCollider == ipPROTON && AtmolCollSplines[ipSpecies][tr.ipHi()][tr.ipLo()][ipCollider].intTranType == 6 )
++	if( ipCollider == ipPROTON )
+ 	{
+ 		rate = fupsilon;
+ 	}

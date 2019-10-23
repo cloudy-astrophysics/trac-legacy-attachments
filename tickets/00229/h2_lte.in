@@ -1,0 +1,287 @@
+set h2 continuum dissociation Stancil
+title test large H2 molecule in PDR-like conditions
+c
+c commands controlling continuum =========
+c first continuum is FIR hot grain continuum produced in 
+c unmodeled HII Region
+blackbody 2000 STE
+c blackbody, t = 75 K
+c intensity -2.7 (total)
+c this is hot star continuum
+c black 30000
+c intensity  -5 range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+c extinguish 24 0
+c
+c commands for density & abundances =========
+hden 18
+init file "honly.ini"
+c grains ism, abundance log 0.16 single, no qheat 
+c init file="ism.ini"
+c abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+c continue si -6.10 s -5.10 cl=-7 ar-8 fe -6.60
+c turbulence 2.7 km/sec
+c
+c commands controlling geometry  =========
+stop zone 1
+c force zone thickess to 1 cm 
+sphere
+set dr 0 
+c stop when gas is fully neutral
+stop efrac -10
+c stop when gas is cold
+stop temperature 10 linear
+c
+c other commands for details     =========
+failures 2 
+c
+c matrix all is necessary to avoid edge effects between matrix and trickle-down solutions
+atom h2 matrix all
+c constant temperature 500 
+c iterate
+case b
+//>>chng 05 nov 22, add cr since grain absorption of molecues
+// is too extreme without it
+cosmic rays background
+c
+c commands controlling output    =========
+normalize to "CO  " 866.7m 
+c uv lines are strongly pumped by stellar continuum, break out contribution
+print line pump
+print line optical depths
+print line faint -2
+print ages
+c 
+set save prefix "h2_lte"
+save performance ".per"
+save monitors ".asr"
+save pdr ".pdr"
+save H2 rates ".rat"
+save H2 lines ".lin" all 
+save H2 column density ".col"
+save H2 populations ".pop"
+save H2 levels ".lev"
+save raw continuum ".raw"
+save continuum ".con"
+save overview ".ovr"
+save dominant rates ".h2" "H2" 
+save chemistry rates ".h2d" "H2" destruction
+c
+c commands giving the monitors    =========
+// check that all lines are still present
+table lines "LineList_PDR_H2.dat"
+//
+// >>chng 05 aug 06, bound cond changed to dense gas with low levels
+// in LTE - everything changed
+monitor h2 ortho 3.000
+//
+//>>chng 05 nov 24, from 6.69 to 5.70, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.70 to 6.70, do not stop due to ices
+monitor h2 column density 6.70 error 0.15
+//
+//>>chng 05 nov 24, from 5.60 to 4.60, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.60 to 5.60, do not stop due to ices
+monitor h2 column density level 0 0 5.60 error 0.1
+//
+//>>chng 05 nov 24, from 6.40 to 5.41, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.41 to 6.41, do not stop due to ices
+monitor h2 column density level 0 1 6.41 error 0.1
+//
+//>>chng 05 nov 24, from 5.85 to 4.86, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.86 to 5.86, do not stop due to ices
+monitor h2 column density level 0 2 5.86 error 0.1
+//
+//>>chng 05 nov 24, from 3.04 to 5.04, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.04 to 6.04, do not stop due to ices
+monitor h2 column density level 0 3 6.04 error 0.1
+//
+//>>chng 05 nov 24, from 5.09 to 4.09, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.09 to 5.09, do not stop due to ices
+monitor h2 column density level 0 4 5.09 error 0.1
+//
+//>>chng 05 nov 24, from 4.93 to 3.93, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 3.93 to 4.93, do not stop due to ices
+monitor h2 column density level 0 5 4.93 error 0.1
+//
+//>>chng 05 nov 24, from 3.64 to 2.64, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 2.64 to 3.64, do not stop due to ices
+monitor h2 column density level 0 6 3.64 error 0.1
+//
+// departure coef well away from unity from here on up
+//
+//>>chng 05 nov 24, from 3.09 to 2.09, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 2.09 to 3.09, do not stop due to ices
+monitor h2 column density level 0 7 3.09 error 0.1
+//
+//>>chng 05 nov 24, from 1.40 to 0.40, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 0.40 to 1.40, do not stop due to ices
+// >>chng 11 nov 16, from 1.4 to 1.48, adjust newmole monitors
+monitor h2 column density level 0 8 1.48 error 0.1
+// >>chng 11 nov 16, from 1.163 to 1.371, adjust newmole monitors
+// >>chng 12 jan 06, from 1.371 to 1.268, several H2 model changes
+monitor h2 column density level 0 9 1.268 error 0.1
+// >>chng 11 nov 16, from 0.501 to 0.6803, adjust newmole monitors
+// >>chng 12 jan 06, from 0.6803 to 0.6115, several H2 model changes
+monitor h2 column density level 0 10  0.6115 error 0.1
+// >>chng 11 nov 16, from 0.6321 to 0.8403, adjust newmole monitors
+// >>chng 12 jan 06, from 0.8403 to 0.787, several H2 model changes
+monitor h2 column density level 0 11  0.787 error 0.1
+// >>chng 11 nov 16, from 0.0137 to 0.1878, adjust newmole monitors
+monitor h2 column density level 0 12  0.1878 error 0.1
+// >>chng 11 nov 16, from 0.2097 to 0.4179, adjust newmole monitors
+monitor h2 column density level 0 13  0.4179 error 0.1
+// >>chng 11 nov 16, from -0.5462 to -0.311, adjust newmole monitors
+monitor h2 column density level 0 14 -0.311 error 0.1
+// >>chng 11 nov 16, from 0.0159 to 0.2184, adjust newmole monitors
+monitor h2 column density level 0 15  0.2184 error 0.1
+// >>chng 11 nov 16, from -0.6911 to -0.4492, adjust newmole monitors
+monitor h2 column density level 0 16 -0.4492 error 0.1
+// >>chng 11 nov 16, from -0.5405 to -0.2091, adjust newmole monitors
+monitor h2 column density level 0 17 -0.2091 error 0.1
+// >>chng 11 nov 16, from -1.062 to -0.7699, adjust newmole monitors
+monitor h2 column density level 0 18 -0.7699 error 0.1
+// >>chng 11 nov 16, from -0.655 to -0.2397, adjust newmole monitors
+monitor h2 column density level 0 19 -0.2397 error 0.1
+// >>chng 11 nov 16, from -1.289 to -0.9219, adjust newmole monitors
+monitor h2 column density level 0 20 -0.9219 error 0.1
+// >>chng 11 nov 16, from -0.866 to -0.4287, adjust newmole monitors
+monitor h2 column density level 0 21 -0.4287 error 0.1
+// >>chng 11 nov 16, from -1.477 to -1.115, adjust newmole monitors
+monitor h2 column density level 0 22 -1.115 error 0.1
+// >>chng 11 nov 16, from -1.085 to -0.6998, adjust newmole monitors
+monitor h2 column density level 0 23 -0.6998 error 0.1
+// >>chng 11 nov 16, from -1.778 to -1.381, adjust newmole monitors
+monitor h2 column density level 0 24 -1.381 error 0.1
+// >>chng 11 nov 16, from -1.522 to -1.111, adjust newmole monitors
+monitor h2 column density level 0 25 -1.111 error 0.1
+// >>chng 11 nov 16, from -2.072 to -1.801, adjust newmole monitors
+monitor h2 column density level 0 26 -1.801 error 0.1
+// >>chng 11 nov 16, from -2.856 to -2.722, adjust newmole monitors
+monitor h2 column density level 0 27 -2.722 error 0.1
+// >>chng 11 nov 16, from -2.096 to -1.982, adjust newmole monitors
+monitor h2 column density level 0 28 -1.982 error 0.1
+// >>chng 11 nov 16, from -2.667 to -2.544, adjust newmole monitors
+monitor h2 column density level 0 29 -2.544 error 0.1
+// >>chng 11 nov 16, from -2.326 to -2.206, adjust newmole monitors
+monitor h2 column density level 0 30 -2.206 error 0.1
+//
+//>>chng 05 nov 24, from -0.42 to -1.40, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -1.40 to -0.40, do not stop due to ices
+//>>chng 07 apr 08, from -0.40 to -0.45, use ORNL H2-He data set
+//>>chng 07 nov 09, from -0.45 to -0.41, update H - H2 collisions data
+//>>chng 09 may 11, from -0.41 to -0.48, update H2 - H2 collisions data
+// >>chng 11 nov 16, from -0.48 to -0.3381, adjust newmole monitors
+monitor h2 column density level 1 0 -0.3381 error 0.1
+//
+//>>chng 05 nov 24, from 0.43 to -0.55, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -0.55 to 0.45 do not stop due to ices
+//>>chng 07 apr 08, from 0.45 to 0.49, use ORNL H2-He data set
+//>>chng 07 nov 09, from 0.49 to 0.57, update H - H2 collisions data
+//>>chng 07 dec 26, from 0.57 to 0.50, us full H-H2 data set
+//>>chng 09 may 11, from 0.50 to 0.43, update H2 - H2 collisions data
+// >>chng 11 nov 16, from 0.43 to 0.5583, adjust newmole monitors
+monitor h2 column density level 1 1 0.5583 error 0.1
+//
+//>>chng 05 nov 24, from -0.10 to -1.08, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -1.08 to -0.08, do not stop due to ices
+//>>chng 07 apr 08, from -0.08 to -0.13, use ORNL H2-He data set
+//>>chng 07 nov 09, from -0.13 to -0.09, update H - H2 collisions data
+//>>chng 09 may 11, from -0.09 to -0.13, update H2 - H2 collisions data
+// >>chng 11 nov 16, from -0.13 to 0.0095, adjust newmole monitors
+monitor h2 column density level 1 2 0.0095 error 0.1
+//
+//>>chng 05 nov 24, from 0.21 to -0.76, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -0.76 to 0.24, do not stop due to ices
+//>>chng 07 nov 09, from 0.24 to 0.36, update H - H2 collisions data
+//>>chng 07 dec 26, from 0.36 to 0.27, us full H-H2 data set
+// >>chng 11 nov 16, from 0.27 to 0.4385, adjust newmole monitors
+monitor h2 column density level 1 3 0.4385 error 0.1
+// >>chng 11 nov 16, from -0.3834 to -0.2077, adjust newmole monitors
+monitor h2 column density level 1 4  -0.2077 error 0.1
+// >>chng 11 nov 16, from 0.065 to 0.2686, adjust newmole monitors
+monitor h2 column density level 1 5   0.2686 error 0.1
+// >>chng 11 nov 16, from -0.4255 to -0.2213, adjust newmole monitors
+monitor h2 column density level 1 6  -0.2213 error 0.1
+// >>chng 11 nov 16, from 0.054 to 0.2721, adjust newmole monitors
+monitor h2 column density level 1 7   0.2721 error 0.1
+// >>chng 11 nov 16, from -0.293 to -0.0841, adjust newmole monitors
+// >>chng 12 jan 06, from -0.084 to -0.1251, several H2 model changes
+monitor h2 column density level 1 8  -0.1251 error 0.1
+// >>chng 11 nov 16, from 0.14 to 0.3674, adjust newmole monitors
+monitor h2 column density level 1 9   0.3674 error 0.1
+monitor h2 column density level 1 10 -0.0063 error 0.1
+// >>chng 11 nov 16, from -1.119 to -0.9466, adjust newmole monitors
+monitor h2 column density level 2 0   -0.9466 error 0.1
+// >>chng 11 nov 16, from -0.1463 to -0.0214, adjust newmole monitors
+monitor h2 column density level 2 1   -0.0214 error 0.1
+// >>chng 11 nov 16, from -0.8002 to -0.6298, adjust newmole monitors
+monitor h2 column density level 2 2   -0.6298 error 0.1
+// >>chng 11 nov 16, from -0.1905 to -0.0357, adjust newmole monitors
+monitor h2 column density level 2 3   -0.0357 error 0.1
+// >>chng 11 nov 16, from -1.45 to -1.283, adjust newmole monitors
+monitor h2 column density level 3 0   -1.283 error 0.1
+// >>chng 11 nov 16, from -0.6791 to -0.4908, adjust newmole monitors
+monitor h2 column density level 3 1   -0.4908 error 0.1
+// >>chng 11 nov 16, from -1.109 to -0.9431, adjust newmole monitors
+monitor h2 column density level 3 2   -0.9431 error 0.1
+// >>chng 11 nov 16, from -0.732 to -0.5585, adjust newmole monitors
+monitor h2 column density level 3 3   -0.5585 error 0.1
+// >>chng 11 nov 16, from -1.661 to -1.482, adjust newmole monitors
+monitor h2 column density level 4 0   -1.482 error 0.1
+// >>chng 11 nov 16, from -0.8418 to -0.6763, adjust newmole monitors
+monitor h2 column density level 4 1   -0.6763 error 0.1
+// >>chng 11 nov 16, from -1.32 to -1.137, adjust newmole monitors
+monitor h2 column density level 4 2   -1.137 error 0.1
+// >>chng 11 nov 16, from -0.9681 to -0.7979, adjust newmole monitors
+monitor h2 column density level 4 3   -0.7979 error 0.1
+// >>chng 11 nov 16, from -2.074 to -1.753, adjust newmole monitors
+monitor h2 column density level 5 0   -1.753 error 0.1
+// >>chng 11 nov 16, from -1.089 to -0.9146, adjust newmole monitors
+monitor h2 column density level 5 1   -0.9146 error 0.1
+// >>chng 11 nov 16, from -1.732 to -1.366, adjust newmole monitors
+monitor h2 column density level 5 2   -1.366 error 0.1
+// >>chng 11 nov 16, from -1.236 to -1.018, adjust newmole monitors
+monitor h2 column density level 5 3   -1.018 error 0.1
+// >>chng 11 nov 16, from -2.185 to -1.926, adjust newmole monitors
+monitor h2 column density level 6 0   -1.926 error 0.1
+// >>chng 11 nov 16, from -1.407 to -1.25, adjust newmole monitors
+monitor h2 column density level 6 1   -1.25 error 0.1
+// >>chng 11 nov 16, from -1.827 to -1.519, adjust newmole monitors
+monitor h2 column density level 6 2   -1.519 error 0.1
+// >>chng 11 nov 16, from -1.538 to -1.25, adjust newmole monitors
+monitor h2 column density level 6 3   -1.25 error 0.1
+// >>chng 11 nov 16, from -2.27 to -2.087, adjust newmole monitors
+monitor h2 column density level 7 0   -2.087 error 0.1
+// >>chng 11 nov 16, from -1.67 to -1.538, adjust newmole monitors
+monitor h2 column density level 7 1   -1.538 error 0.1
+// >>chng 11 nov 16, from -1.853 to -1.64, adjust newmole monitors
+monitor h2 column density level 7 2   -1.64 error 0.1
+// >>chng 11 nov 16, from -1.581 to -1.373, adjust newmole monitors
+monitor h2 column density level 7 3   -1.373 error 0.1
+// >>chng 11 nov 16, from -2.371 to -2.256, adjust newmole monitors
+monitor h2 column density level 8 0   -2.256 error 0.1
+// >>chng 11 nov 16, from -2.117 to -1.913, adjust newmole monitors
+monitor h2 column density level 8 1   -1.913 error 0.1
+// >>chng 11 nov 16, from -1.877 to -1.748, adjust newmole monitors
+monitor h2 column density level 8 2   -1.748 error 0.1
+// >>chng 11 nov 16, from -1.615 to -1.5, adjust newmole monitors
+monitor h2 column density level 8 3   -1.5 error 0.1
+// >>chng 11 nov 16, from -2.231 to -2.151, adjust newmole monitors
+monitor h2 column density level 9 0   -2.151 error 0.1
+// >>chng 11 nov 16, from -1.989 to -1.896, adjust newmole monitors
+monitor h2 column density level 9 1   -1.896 error 0.1
+// >>chng 11 nov 16, from -1.818 to -1.758, adjust newmole monitors
+monitor h2 column density level 9 2   -1.758 error 0.1
+// >>chng 11 nov 16, from -2.177 to -2.113, adjust newmole monitors
+monitor h2 column density level 9 3   -2.113 error 0.1
+//
+// >>chng 5 dec 17 add this assert, make sure ices do not stop this sim
+monitor nzone 10 error 0.01
+//
+c h2_t500.in 
+c class limit  
+c ========================================
+
+This is a dense molecular gas with background cosmic rays and the incident
+radiation field set to a small value.  The lower levels are in LTE.
+

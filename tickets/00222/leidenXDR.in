@@ -1,0 +1,24 @@
+title XDR sim
+//
+// commands controlling continuum
+Intensity 0.43
+power law slope=-1 7353 73.5
+extinguish 23 
+//
+// commands for density & abundances 
+hden 3
+abundances ism
+grains PAH 3 
+//
+// commands controlling geometry
+stop zone 2
+sphere
+stop temperature linear 3
+//
+// other commands for details
+normalize to "C  2" 157.6m
+iterate 
+Case B // to prevent continuum fluorescent excitation of H I 
+cosmic ray rate -16.3
+//
+// commands controlling output print and save commands

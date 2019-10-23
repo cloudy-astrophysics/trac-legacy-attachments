@@ -1,0 +1,50 @@
+Index: mole_h2.cpp
+===================================================================
+--- mole_h2.cpp	(revision 12850)
++++ mole_h2.cpp	(working copy)
+@@ -674,8 +674,10 @@
+ 			if(lgDeBug)fprintf(ioQQQ,"\t%.1e",CollRate_levn[ihi][ilo]);
+ 
+ 			/* now get upward excitation rate - units s-1 */
++			// use dsexp() explicitly rather than divide Boltzmann() factors
++			// to avoid problems with underflow at low Te (see ticket #284)
+ 			CollRate_levn[ilo][ihi] = CollRate_levn[ihi][ilo]*
+-				safe_div(states[ihi].Boltzmann(),states[ilo].Boltzmann(),0.)*
++				dsexp( (states[ihi].energy().K() - states[ilo].energy().K()) / phycon.te )*
+ 				states[ihi].g() / states[ilo].g();
+ 		}
+ 		if(lgDeBug)fprintf(ioQQQ,"\n");
+@@ -691,8 +693,10 @@
+ 			if(lgDeBug)fprintf(ioQQQ,"\t%.1e",ratein);
+ 
+ 			/* now get upward excitation rate */
++			// use dsexp() explicitly rather than divide Boltzmann() factors
++			// to avoid problems with underflow at low Te (see ticket #284)
+ 			double rateout = ratein *
+-				safe_div(states[ihi].Boltzmann(),states[ilo].Boltzmann(),0.0)*
++				dsexp( (states[ihi].energy().K() - states[ilo].energy().K()) / phycon.te )*
+ 				states[ihi].g()/states[ilo].g();
+ 
+ 			/* these are general entries and exits going into vector */
+@@ -2055,7 +2059,7 @@
+ 		long iRotHi = ipRot_H2_energy_sort[ipHi];
+ 
+ 		realnum H2stat = states[ipHi].g();
+-		double H2boltz = states[ipHi].Boltzmann();
++		double EhiK = states[ipHi].energy().K();
+ 
+ 		for( long ipLo=0; ipLo<ipHi; ++ipLo )
+ 		{
+@@ -2065,9 +2069,11 @@
+ 			/* collision de-excitation [s-1] */
+ 			realnum colldn = H2_X_coll_rate[ipHi][ipLo];
+ 			/* inverse, rate up, [cm-3 s-1] */
++			// use dsexp() explicitly rather than divide Boltzmann() factors
++			// to avoid problems with underflow at low Te (see ticket #284)
+ 			realnum collup = colldn *
+ 				H2stat / states[ipLo].g() *
+-				safe_div(H2boltz, states[ipLo].Boltzmann(), 0.0 );
++				dsexp( (EhiK - states[ipLo].energy().K()) / phycon.te );
+ 			
+ 			H2_col_rate_out[iVibHi][iRotHi] += colldn;
+ 			H2_col_rate_in[iVibLo][iRotLo]  += colldn * H2_old_populations[0][iVibHi][iRotHi];
