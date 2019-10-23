@@ -1,0 +1,151 @@
+title Leiden meeting model 1
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 5
+extinguish 24
+c
+c commands for density & abundances =========
+c  hydrogen density 
+c Quan: use grid command to vary hden from 50 linear to 500000 linear
+hden 5.7 vary
+grid, from 1.7 to 9.7 in 0.5 dex steps
+grains ism 1.16 no qheat
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c failures 3
+stop zone 1
+set H2 jura scale 10. log
+c use leiden initialization file
+init file="pdr_leiden.ini"
+c This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c This sets the temperature to a constant 100 Kelvin
+constant temperature 100 linear
+c constant temperature 50 linear vary
+c grid range from 10 to 100 in 10 linear
+c
+c commands controlling output    =========
+c print line faint off
+c print last iteration
+c print line optical depths 
+save overview "pdr_leiden_f1.ovr"
+c save continuum "pdr_leiden_f1.con"
+c save leiden lines "pdr_leiden_f1.lin"
+c save leiden "pdr_leiden_f1.lei"
+c save dr "pdr_leiden_f1.dr" 
+c save molecules "pdr_leiden_f1.mol"
+c save grain physical conditions "pdr_leiden_f1.grn"
+c save monitors "pdr_leiden_f1.asr"
+c save chemistry rates CO "pdr_leiden_f1.rat"
+c save H2 destruction "pdr_leiden_f1.H2d"
+c save H2 creation "pdr_leiden_f1.H2c"
+c save secondaries "pdr_leiden_f1.sec"
+save cooling "pdr_leiden_f1.col"
+save grid "pdr_leiden_f1.grd"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.904 error 0.1
+// 
+// >>chng 04 oct 19, from 18.02 to 18.06, increse d Mole d Zone
+// >>chng 05 jun 26, from 18.06 to 18.01, include Federman chemistry
+// >>chng 05 jul 02, from 18.01 to 17.93, A_V zoning was not exact
+// >>chng 05 nov 22, from 17.93 to 16.35, NA add freeze out onto grains
+// >>chng 05 dec 17, from 16.35 to 16.54, NA increase C chemistry
+// >>chng 06 jan 04, from 16.54 to 16.65, NA C chem restore missed block reacts
+// >>chng 06 mar 02, from 16.65 to 17.42, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 mar 06, from 17.42 to 17.29, PvH grain freeze out
+monitor CO column density 17.29 error 0.1
+// 
+// >>chng 05 jul 02, from 17.26 to 17.20, A_V zoning was not exact
+// >>chng 05 aug 24, from 17.20 to 16.91, NA update CO cr ion rate
+// >>chng 05 nov 22, from 16.91 to 13.41, NA add freeze out onto grains
+// >>chng 06 mar 06, from 13.41 to 13.20, PvH grain freeze out
+// >>chng 07 jan 07, from 13.20 to 13.15, enable McCall et al. H3+ rate
+monitor O2 column density 13.15 error 0.1
+// 
+// >>chng 05 jul 02, from 15.37 to 15.32, A_V zoning was not exact
+// >>chng 05 aug 24, from 15.32 to 15.22, NA update CO cr ion rate
+// >>chng 05 nov 22, from 15.22 to 13.77, NA add freeze out onto grains
+// >>chng 06 mar 06, from 13.77 to 13.67, PvH grain freeze out
+// >>chng 07 jan 07, from 13.67 to 13.78, enable McCall et al. H3+ rate
+monitor OH column density 13.78 error 0.1
+// 
+// >>chng 05 jul 02, from 16.85 to 16.80, A_V zoning was not exact
+// >>chng 05 aug 24, from 16.80 to 16.64, NA update CO cr ion rate
+// >>chng 05 nov 22, from 16.64 to 14.89, NA add freeze out onto grains
+// >>chng 06 jan 04, from 14.89 to 14.93, NA C chem restore missed block reacts
+// >>chng 06 mar 02, from 14.93 to 15.04, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 mar 06, from 15.04 to 14.89, PvH grain freeze out
+// >>chng 06 sep 30, from 14.89 to 14.94, rjrw merge chem, corr several bugs
+// >>chng 07 jan 07, from 14.94 to 14.98, enable McCall et al. H3+ rate
+monitor SiO column density 14.98 error 0.1
+// 
+// >>chng 05 sep 30, add these 5
+monitor column density H2+  11.72 error 0.1
+// 
+// >>chng 06 mar 06, from 14.27 to 14.30, PvH grain freeze out
+// >>chng 06 sep 30, from 14.30 to 14.21, rjrw merge chem, corr several bugs
+// >>chng 07 jan 07, from 14.21 to 14.49, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 14.49 to 14.54, grain charge transfer changes in ion_solver and iso*
+monitor column density H3+  14.54 error 0.1
+// 
+monitor column density H2g  21.90 error 0.1
+// 
+// >>chng 05 dec 08, from 14.11 to 14.00, update to Elwert Solomon rate
+monitor column density H2*  14.00 error 0.1
+// 
+// >>chng 05 dec 08, from 8.35 to 8.06, update to Elwert Solomon rate
+monitor column density HeH+ 8.06  error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+// >>chng 06 nov 29, from -4.611 to -4.644, Badnell DR turned on
+monitor line luminosity "C  2" 157.6m -4.644
+// 
+// >>chng 07 jan 07, from -5.060 to -5.084, enable McCall et al. H3+ rate
+monitor line luminosity "C  1" 369.7m -5.084
+// 
+// >>chng 07 jan 07, from -5.485 to -5.505, enable McCall et al. H3+ rate
+monitor line luminosity "C  1" 609.2m -5.505
+// 
+// >>chng 07 jan 07, from -5.835 to -5.877, enable McCall et al. H3+ rate
+monitor line luminosity "O  1" 63.17m -5.877
+// 
+// >>chng 07 jan 07, from -7.331 to -7.376, enable McCall et al. H3+ rate
+monitor line luminosity "O  1" 145.5m -7.376
+//
+// >>chng 05 mar 28, from 5 to 3.5 impr mol converg
+// >>chng 08 dec 08, from 3.5 to 2.339, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 2.339 to 3.937, merging newsolvers branch
+// >>chng 09 jan 08, from 3.937 to 3.866, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 3.866 to 3.946 (error 0.04), average of 10 runs
+// >>chng 09 feb 23, from 3.946 to 4.134, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 apr 18, from 4.134 to 3.964, refactor evaluation of esc dest probs to occur with cooling
+// >>chng 09 nov 17, from 3.964 to 4.152, N I changes (r3588)
+// >>chng 10 mar 05, from 4.152 to 3.919, changes caused by r3848 atomic data update
+monitor itrzn 3.919
+// 
+// >>chng 05 jun 26, turn on elements needed for chem net, 450 to 574
+// >>chng 06 mar 02, from 620 to 660 (636), NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 08 dec 08, from 660 to 619, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 619 to 618, average of 10 runs
+monitor nzone 618 
+c
+c pdr_leiden_f1.in
+c class pdr  
+c ========================================
+c 
+
+
+This sim has some interesting properties.  The grain temp is so low that
+O freezes onto grains as H2O.  This is so efficient that CO does not become
+well formed - the CO/C ratio only reaches 0.3.
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 

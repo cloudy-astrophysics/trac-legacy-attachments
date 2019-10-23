@@ -1,0 +1,16 @@
+set continuum resolution 0.1
+set line precision 6
+agn 6.00 -1.40 -0.50 -1.
+ionization parameter 0.5
+hden=5
+stop column density 21. vary
+grid from 21. to 22. in 1.0 dex steps
+stop temperature _off
+print line sort intensity column
+normalize to "O 7" 22.1012A
+punch last lines column, intensity "test_lines.dat"
+punch last reflected continuum units Angstroms "test_spectrum.dat"
+punch xspec atable reflected lines "test_reflines.fits"
+punch xspec atable reflected diffuse "test_refdiff.fits"
+COSMIC RAYS BACKGROUND
+iterate to convergence

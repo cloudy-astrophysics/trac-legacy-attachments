@@ -1,0 +1,19 @@
+element lithium off
+element berylium off
+element boron off
+c element silicon off
+cosmic rays background
+cmb
+iterate
+c
+blackbody 6
+ENERGY DENSITY 1.000000 LOG
+HDEN=18.000000 LOG
+stop zone 1
+c set to constant small thickness
+set dr -10
+c normalize to "Q(H)" 4861A
+normalize to "H2O " 538.1m
+punch heating "bug.het"
+punch cooling "bug.col"
+punch continuum "bug.con" last units microns

@@ -1,0 +1,15 @@
+table star wmbasic 35000 3.9 0
+luminosity 38.3 vary
+grid 38.3 to 44.3 step 2.0 repeat
+extinguish 21
+radius 21.5 
+hden 0
+stop zone 1
+stop temperature 10 linear
+set punch prefix "bug"
+set punch hash "return"
+punch continuum ".con" units angstrom
+punch overview ".ovr"
+punch grid ".grd"
+
+c THIS IS A BUG... extinguish command is broken on second grid?  Also would be nice if strict repeats repeated answers (check ion fracs).

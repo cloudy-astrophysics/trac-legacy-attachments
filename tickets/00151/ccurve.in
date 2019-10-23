@@ -1,0 +1,7 @@
+hden 0
+stop zone 1
+set dr 0
+coronal equilibrium, T= 1 vary
+grid 1 2 1
+save grid "ccurve.grd"  last no hash
+save cooling "ccurve.col" last no hash
