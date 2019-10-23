@@ -1,0 +1,24 @@
+hden 1e9 linear 
+constant temperature 1e7K 
+wind 500 km/s
+stop column density  1e23 linear
+radius 5e14 linear cm
+c 
+c hot star
+table star wmbasic 4e4K 3 0 
+luminosity 4e5 linear solar
+c 
+print line optical depths faint -4 
+print line faint -7 
+print line column 
+print line sort wavelength 
+c
+c set chianti on "CloudyChiantiAll.ini"
+abundances he = -0.7 li = -8.69 be = -10.58 b = -9.21 c = -5 n = -3.1 o = -5
+continue f = -7.52 ne = -4 na = -5.67 mg = -4.46
+continue al = -5.53 si = -4.46 p = -6.5 s = -4.74 cl = -6.72 ar = -5.6 k =-6.88
+continue ca = -5.64 sc = -8.83 ti = -6.98 v = -8 cr = -6.33 mn=-6.54 fe= -4.55
+continue co = -7.08 ni = -5.75 cu = -7.79 zn = -7.40
+c
+save continuum "xray2.con" units eV  
+

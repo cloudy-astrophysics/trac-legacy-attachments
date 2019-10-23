@@ -1,0 +1,42 @@
+interpolate (   0.0499790 -40.0000000)
+continue (   0.1499371 -40.0000000)
+continue ( 682.0992348 -40.0000000)
+F(nu)  -40.0000000 at    0.1499371 Ryd
+hden   -15.0000000 0
+set eden 0
+element Helium  off
+element Lithium  off
+element Beryllium  off
+element Boron  off
+element Carbon  off
+element Nitrogen  off
+element Oxygen  off
+element Fluorine  off
+element Neon  off
+element Sodium  off
+element Magnesium  off
+element Aluminium  off
+element Silicon  off
+element Phosphorus  off
+element Sulphur  off
+element Chlorine  off
+element Argon  off
+element Potassium  off
+element Calcium  off
+element Scandium  off
+element Titanium  off
+element Vanadium  off
+element Chromium  off
+element Manganese  off
+element Iron  off
+element Cobalt  off
+element Nickel  off
+element Copper abundance 15
+element Zinc  off
+element Copper ionization  0.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 -15.00 
+constant temperature t=         1703000.000000 k
+set trim -15
+stop zone 1
+set dielectronic recombination badnell
+no molecules
+set WeakHeatCool 0.00001

@@ -1,0 +1,10 @@
+title General model with nuFnu = 11, log n(H) = 10, log N(H) = 23   
+AGN 5.5 -1.40 -0.50 -1.0 break 1 microns  
+metals 0  log  
+constant pressure  
+hden 10   
+stop column 23   
+nuF(nu) = 11  at 1 Ryd    
+iterate to convergence  
+punch physical conditions last file = "solar-10-11-23.phys"
+print last  

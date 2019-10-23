@@ -1,0 +1,12 @@
+constant temperature 8e3K
+stop zone 1
+blackbody 4e4k
+ionization parameter -20
+hden 3
+init "hheonly.ini"
+element carbon on
+element nitrogen on
+element oxygen on
+element sulphur on
+print arrays
+

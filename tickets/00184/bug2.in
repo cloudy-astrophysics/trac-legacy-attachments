@@ -1,0 +1,13 @@
+coronal equilium 2.1 vary
+grid 2.1 to 2.201 step 0.1 repeat
+cosmic rays background
+stop temperature off
+radius 17.5
+hden 4.0
+abundances ISM
+atom H2
+stop zone 1
+save cooling "bug2.coo"
+save overview "bug2.ovr"
+save heating "bug2.hea"
+Save molecules "bug2.mol"

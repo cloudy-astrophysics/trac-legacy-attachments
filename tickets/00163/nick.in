@@ -1,0 +1,34 @@
+CMB
+hden 3.5
+ionization parameter -2.5
+STOP COLUMN DENSITY 24.600000 LOG
+element carbon scale 0.56
+AGN 6.00 -1.40 -0.5 -1.0
+print line column
+normalize to "Ne 2" 12.81m
+constant pressure
+set drmin 7.0
+set pressure convergence 0.03
+magnetic field -5
+abundances ism
+sphere
+failues 20
+iterate
+turbulence 1 km/s no pressure
+stop temperature linear 3
+stop zone 1400 169
+cosmic ray rate -16.3
+set punch hash "return"
+set punch prefix "nick"
+punch dr ".dr" 
+punch overview ".ovr"
+punch molecules ".mol"
+punch element helium ".hel"
+punch element carbon ".car"
+punch element nitrogen ".nit"
+punch element silicon ".sil"
+punch dominant rates ".co" "CO"
+punch dominant rates ".oh" "OH"
+punch history pressure ".pre"
+punch history temperature ".tem"
+punch line pressure ".rad"

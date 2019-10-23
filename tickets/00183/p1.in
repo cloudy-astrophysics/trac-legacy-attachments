@@ -1,0 +1,18 @@
+table drain
+extinguish 23
+cosmic rays background
+stop temperature off
+hden 13.0
+radius 17.5
+constant pressure
+hextra SS 0.2 1e8 3e17
+set drmin 3e-3
+iterate
+double
+save convergence base "convergence.out"
+save cooling "cooling.out"
+save overview "temperature.out"
+save heating "heating.out"
+save molecules "molecules.out"
+save pressure "pressure.out"
+save dr "dr.out"

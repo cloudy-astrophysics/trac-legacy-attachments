@@ -1,0 +1,171 @@
+                                              Cloudy (trunk, r4154M, experimental)
+                                                         www.nublado.org
+
+                       **************************************08Nov25**************************************
+                       *                                                                                 *
+                       * title Test of H radio recombination lines from ionized gas                      *
+                       * set save prefix "hrr-n100-test"                                                 *
+                       * hden 4                                                                          *
+                       * blackbody 30000                                                                 *
+                       * ionization -3                                                                   *
+                       * init file "ism.ini"                                                             *
+                       * stop zone 10                                                                    *
+                       * iterate                                                                         *
+                       * atom h-like levels 100 element hydrogen                                         *
+                       * print diffuse continuum                                                         *
+                       * print line faint off                                                            *
+                       * save overview last ".ovr"                                                       *
+                       * save hydrogen lines last ".hlin"                                                *
+                       * save hydrogen populations last ".hpop"                                          *
+                       * save hydrogen 21cm last ".21cm"                                                 *
+                       *                                                                                 *
+                       ***********************************************************************************
+
+
+
+           4070CellPeak1.00E+00   Lo 1.00e-08=910.79cm   Hi-Con:6.87E+00 Ryd   E(hi):7.35E+06Ryd     E(hi):     100.01 MeV
+           I(nu>1ryd):   0.9146   Average nu:1.257E+00   I( X-ray):   0.0000   I(BalC):   1.4402     Phi(BalmrC):  12.3717
+           phi(1.0-1.8):11.4588   phi(1.8-4.0): 10.085   phi(4.0-20):  5.715   phi(20--):  0.000     Ion pht flx:2.998E+11
+           I(gam ray):   0.0000   phi(gam r):   0.0000   I(Infred):   0.4237   Alf(ox):   0.0000     Total inten:   1.5846
+           U(1.0----):1.000E-03   U(4.0----):1.732E-09   T(En-Den):2.029E+01   T(Comp):2.872E+04     nuJnu(912A):2.364E+01
+           Occ(FarIR):3.960E-06   Occ(H n=6):1.330E-12   Occ(1Ryd):1.083E-15   Occ(4R):1.486E-22     Occ (Nu-hi):4.487E-29
+           Tbr(FarIR):6.274E-09   Tbr(H n=6):5.827E-09   Tbr(1Ryd):1.711E-10   Tbr(4R):9.390E-17     Tbr (Nu-hi):4.856E-23
+  
+ NOTE OpacityCreate1Element needed more opacity cells than ndimOpacityStack,  please consider increasing it.
+ NOTE OpacityCreate1Element doubled memory allocation to 4200000.
+ NOTE OpacityCreate1Element needed more opacity cells than ndimOpacityStack,  please consider increasing it.
+ NOTE OpacityCreate1Element doubled memory allocation to 8400000.
+ NOTE OpacityCreate1Element needed more opacity cells than ndimOpacityStack,  please consider increasing it.
+ NOTE OpacityCreate1Element doubled memory allocation to 16800000.
+ Please consider revising ndimOpacityStack in OpacityCreateAll, a total of 9008426 cells were needed.
+
+SanityCheck finds insane H photo cs, n,l = 71, 65, expected, found = 1.430777e-26, 1.505268e-26, error = 5.074198e-02
+SanityCheck finds insane H photo cs, n,l = 71, 66, expected, found = 1.969151e-27, 2.076041e-27, error = 5.284771e-02
+SanityCheck finds insane H photo cs, n,l = 71, 67, expected, found = 2.183305e-28, 2.306821e-28, error = 5.501658e-02
+SanityCheck finds insane H photo cs, n,l = 71, 68, expected, found = 1.828221e-29, 1.935970e-29, error = 5.724952e-02
+SanityCheck finds insane H photo cs, n,l = 71, 69, expected, found = 1.027659e-30, 1.090732e-30, error = 5.954743e-02
+SanityCheck finds insane H photo cs, n,l = 71, 70, expected, found = 2.908148e-32, 3.093947e-32, error = 6.191123e-02
+SanityCheck finds insane H photo cs, n,l = 75, 72, expected, found = 2.021870e-30, 2.127668e-30, error = 5.099313e-02
+SanityCheck finds insane H photo cs, n,l = 75, 73, expected, found = 1.076275e-31, 1.134798e-31, error = 5.293643e-02
+SanityCheck finds insane H photo cs, n,l = 75, 74, expected, found = 2.883290e-33, 3.046150e-33, error = 5.493246e-02
+SanityCheck finds insane H photo cs, n,l = 85, 74, expected, found = 5.565186e-26, 5.859606e-26, error = 5.154066e-02
+SanityCheck finds insane H photo cs, n,l = 85, 75, expected, found = 1.246311e-26, 1.314722e-26, error = 5.342479e-02
+SanityCheck finds insane H photo cs, n,l = 85, 76, expected, found = 2.527131e-27, 2.671012e-27, error = 5.535870e-02
+SanityCheck finds insane H photo cs, n,l = 85, 77, expected, found = 4.582193e-28, 4.852706e-28, error = 5.734301e-02
+SanityCheck finds insane H photo cs, n,l = 85, 78, expected, found = 7.313221e-29, 7.760756e-29, error = 5.937837e-02
+SanityCheck finds insane H photo cs, n,l = 85, 79, expected, found = 1.006385e-29, 1.070204e-29, error = 6.146541e-02
+SanityCheck finds insane H photo cs, n,l = 85, 80, expected, found = 1.160886e-30, 1.237150e-30, error = 6.360476e-02
+SanityCheck finds insane H photo cs, n,l = 85, 81, expected, found = 1.077563e-31, 1.150875e-31, error = 6.579705e-02
+SanityCheck finds insane H photo cs, n,l = 85, 82, expected, found = 7.545351e-33, 8.076840e-33, error = 6.804293e-02
+SanityCheck finds insane H photo cs, n,l = 85, 83, expected, found = 3.542689e-34, 3.800977e-34, error = 7.034301e-02
+SanityCheck finds insane H photo cs, n,l = 85, 84, expected, found = 8.364703e-36, 8.995737e-36, error = 7.269793e-02
+SanityCheck finds insane H photo cs, n,l = 88, 84, expected, found = 2.100793e-32, 2.209083e-32, error = 5.025199e-02
+SanityCheck finds insane H photo cs, n,l = 88, 85, expected, found = 1.421989e-33, 1.497774e-33, error = 5.191147e-02
+SanityCheck finds insane H photo cs, n,l = 88, 86, expected, found = 6.452789e-35, 6.808249e-35, error = 5.360967e-02
+SanityCheck finds insane H photo cs, n,l = 88, 87, expected, found = 1.472261e-36, 1.556065e-36, error = 5.534701e-02
+SanityCheck finds insane H photo cs, n,l = 90, 87, expected, found = 4.612084e-34, 4.856357e-34, error = 5.159734e-02
+SanityCheck finds insane H photo cs, n,l = 90, 88, expected, found = 2.046483e-35, 2.158438e-35, error = 5.324928e-02
+SanityCheck finds insane H photo cs, n,l = 90, 89, expected, found = 4.565125e-37, 4.823010e-37, error = 5.493845e-02
+SanityCheck finds insane H photo cs, n,l = 93, 79, expected, found = 8.571326e-26, 9.014360e-26, error = 5.038575e-02
+SanityCheck finds insane H photo cs, n,l = 93, 80, expected, found = 2.252438e-26, 2.372961e-26, error = 5.211385e-02
+SanityCheck finds insane H photo cs, n,l = 93, 81, expected, found = 5.494351e-27, 5.798610e-27, error = 5.388478e-02
+SanityCheck finds insane H photo cs, n,l = 93, 82, expected, found = 1.235376e-27, 1.306157e-27, error = 5.569904e-02
+SanityCheck finds insane H photo cs, n,l = 93, 83, expected, found = 2.539126e-28, 2.689601e-28, error = 5.755716e-02
+SanityCheck finds insane H photo cs, n,l = 93, 84, expected, found = 4.722736e-29, 5.012153e-29, error = 5.945964e-02
+SanityCheck finds insane H photo cs, n,l = 93, 85, expected, found = 7.850906e-30, 8.348278e-30, error = 6.140700e-02
+SanityCheck finds insane H photo cs, n,l = 93, 86, expected, found = 1.148181e-30, 1.223359e-30, error = 6.339975e-02
+SanityCheck finds insane H photo cs, n,l = 93, 87, expected, found = 1.447099e-31, 1.544998e-31, error = 6.543840e-02
+SanityCheck finds insane H photo cs, n,l = 93, 88, expected, found = 1.528046e-32, 1.634830e-32, error = 6.752346e-02
+SanityCheck finds insane H photo cs, n,l = 93, 89, expected, found = 1.297728e-33, 1.391383e-33, error = 6.965544e-02
+SanityCheck finds insane H photo cs, n,l = 93, 90, expected, found = 8.309964e-35, 8.929148e-35, error = 7.183486e-02
+SanityCheck finds insane H photo cs, n,l = 93, 91, expected, found = 3.566303e-36, 3.840589e-36, error = 7.406220e-02
+SanityCheck finds insane H photo cs, n,l = 93, 92, expected, found = 7.692905e-38, 8.303470e-38, error = 7.633799e-02
+SanityCheck finds insane H photo cs, n,l = 97, 95, expected, found = 3.631220e-37, 3.822059e-37, error = 5.120935e-02
+SanityCheck finds insane H photo cs, n,l = 97, 96, expected, found = 7.514043e-39, 7.920923e-39, error = 5.272188e-02
+SanityCheck finds insane H photo cs, n,l = 98, 86, expected, found = 5.129196e-28, 5.398971e-28, error = 5.124829e-02
+SanityCheck finds insane H photo cs, n,l = 98, 87, expected, found = 1.097396e-28, 1.157007e-28, error = 5.288375e-02
+SanityCheck finds insane H photo cs, n,l = 98, 88, expected, found = 2.145634e-29, 2.265975e-29, error = 5.455649e-02
+SanityCheck finds insane H photo cs, n,l = 98, 89, expected, found = 3.795332e-30, 4.015066e-30, error = 5.626693e-02
+SanityCheck finds insane H photo cs, n,l = 98, 90, expected, found = 5.998451e-31, 6.356851e-31, error = 5.801547e-02
+SanityCheck finds insane H photo cs, n,l = 98, 91, expected, found = 8.338211e-32, 8.852227e-32, error = 5.980253e-02
+SanityCheck finds insane H photo cs, n,l = 98, 92, expected, found = 9.985849e-33, 1.062083e-32, error = 6.162853e-02
+SanityCheck finds insane H photo cs, n,l = 98, 93, expected, found = 1.001682e-33, 1.067368e-33, error = 6.349386e-02
+SanityCheck finds insane H photo cs, n,l = 98, 94, expected, found = 8.079179e-35, 8.625410e-35, error = 6.539894e-02
+SanityCheck finds insane H photo cs, n,l = 98, 95, expected, found = 4.911994e-36, 5.254315e-36, error = 6.734418e-02
+SanityCheck finds insane H photo cs, n,l = 98, 96, expected, found = 2.000958e-37, 2.144666e-37, error = 6.932999e-02
+SanityCheck finds insane H photo cs, n,l = 98, 97, expected, found = 4.095985e-39, 4.399075e-39, error = 7.135678e-02
+SanityCheck finds insane H photo cs, n,l = 99, 82, expected, found = 2.454119e-25, 2.582432e-25, error = 5.095265e-02
+SanityCheck finds insane H photo cs, n,l = 99, 83, expected, found = 7.365910e-26, 7.764089e-26, error = 5.263430e-02
+SanityCheck finds insane H photo cs, n,l = 99, 84, expected, found = 2.083683e-26, 2.200108e-26, error = 5.435612e-02
+SanityCheck finds insane H photo cs, n,l = 99, 85, expected, found = 5.530505e-27, 5.849829e-27, error = 5.611858e-02
+SanityCheck finds insane H photo cs, n,l = 99, 86, expected, found = 1.370228e-27, 1.451961e-27, error = 5.792215e-02
+SanityCheck finds insane H photo cs, n,l = 99, 87, expected, found = 3.150115e-28, 3.344189e-28, error = 5.976729e-02
+SanityCheck finds insane H photo cs, n,l = 99, 88, expected, found = 6.673102e-29, 7.097615e-29, error = 6.165447e-02
+SanityCheck finds insane H photo cs, n,l = 99, 89, expected, found = 1.291758e-29, 1.376590e-29, error = 6.358414e-02
+SanityCheck finds insane H photo cs, n,l = 99, 90, expected, found = 2.262093e-30, 2.415415e-30, error = 6.555677e-02
+SanityCheck finds insane H photo cs, n,l = 99, 91, expected, found = 3.539235e-31, 3.786754e-31, error = 6.757283e-02
+SanityCheck finds insane H photo cs, n,l = 99, 92, expected, found = 4.869982e-32, 5.221324e-32, error = 6.963276e-02
+SanityCheck finds insane H photo cs, n,l = 99, 93, expected, found = 5.772956e-33, 6.202498e-33, error = 7.173704e-02
+SanityCheck finds insane H photo cs, n,l = 99, 94, expected, found = 5.731611e-34, 6.171343e-34, error = 7.388612e-02
+SanityCheck finds insane H photo cs, n,l = 99, 95, expected, found = 4.575337e-35, 4.937196e-35, error = 7.608046e-02
+SanityCheck finds insane H photo cs, n,l = 99, 96, expected, found = 2.752947e-36, 2.977347e-36, error = 7.832052e-02
+SanityCheck finds insane H photo cs, n,l = 99, 97, expected, found = 1.109782e-37, 1.202995e-37, error = 8.060675e-02
+SanityCheck finds insane H photo cs, n,l = 99, 98, expected, found = 2.247985e-39, 2.442499e-39, error = 8.293960e-02
+SanityCheck finds insane H photo cs, n,l = 100, 81, expected, found = 1.525245e-24, 1.604371e-24, error = 5.056636e-02
+SanityCheck finds insane H photo cs, n,l = 100, 82, expected, found = 5.048394e-25, 5.319232e-25, error = 5.224683e-02
+SanityCheck finds insane H photo cs, n,l = 100, 83, expected, found = 1.586518e-25, 1.674513e-25, error = 5.396793e-02
+SanityCheck finds insane H photo cs, n,l = 100, 84, expected, found = 4.717344e-26, 4.987778e-26, error = 5.573015e-02
+SanityCheck finds insane H photo cs, n,l = 100, 85, expected, found = 1.321902e-26, 1.400209e-26, error = 5.753396e-02
+SanityCheck finds insane H photo cs, n,l = 100, 86, expected, found = 3.475397e-27, 3.688080e-27, error = 5.937983e-02
+SanityCheck finds insane H photo cs, n,l = 100, 87, expected, found = 8.528639e-28, 9.067687e-28, error = 6.126824e-02
+SanityCheck finds insane H photo cs, n,l = 100, 88, expected, found = 1.941942e-28, 2.068677e-28, error = 6.319966e-02
+SanityCheck finds insane H photo cs, n,l = 100, 89, expected, found = 4.074144e-29, 4.348619e-29, error = 6.517458e-02
+SanityCheck finds insane H photo cs, n,l = 100, 90, expected, found = 7.810243e-30, 8.353284e-30, error = 6.719345e-02
+SanityCheck finds insane H photo cs, n,l = 100, 91, expected, found = 1.354394e-30, 1.451559e-30, error = 6.925676e-02
+SanityCheck finds insane H photo cs, n,l = 100, 92, expected, found = 2.098318e-31, 2.253606e-31, error = 7.136497e-02
+SanityCheck finds insane H photo cs, n,l = 100, 93, expected, found = 2.858864e-32, 3.077064e-32, error = 7.351855e-02
+SanityCheck finds insane H photo cs, n,l = 100, 94, expected, found = 3.355409e-33, 3.619471e-33, error = 7.571797e-02
+SanityCheck finds insane H photo cs, n,l = 100, 95, expected, found = 3.298240e-34, 3.565813e-34, error = 7.796371e-02
+SanityCheck finds insane H photo cs, n,l = 100, 96, expected, found = 2.606539e-35, 2.824475e-35, error = 8.025622e-02
+SanityCheck finds insane H photo cs, n,l = 100, 97, expected, found = 1.552573e-36, 1.686333e-36, error = 8.259597e-02
+SanityCheck finds insane H photo cs, n,l = 100, 98, expected, found = 6.195590e-38, 6.745479e-38, error = 8.498343e-02
+SanityCheck finds insane H photo cs, n,l = 100, 99, expected, found = 1.242244e-39, 1.355804e-39, error = 8.741905e-02
+SanityCheck finds insanity so exiting
+
+
+
+           vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv 
+          > PROBLEM DISASTER PROBLEM DISASTER.      <
+          > Sorry, something bad has happened.      <
+          > Please post this on the Cloudy web site <
+          > discussion board at www.nublado.org     <
+          > Please send all following information:  <
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
+
+ Cloudy version number is (trunk, r4154M, experimental)
+ Cloudy compiled on Aug 20 2010 in OS Apple MacOS using the g++ 40001 compiler. Mode ILP32, denormalized float: T double: T.
+
+    0 warnings,  0 cautions,  0 temperature failures.  Messages follow.
+ Input commands follow:
+c ======================
+title Test of H radio recombination lines from ionized gas  
+set save prefix "hrr-n100-test"  
+hden 4  
+blackbody 30000  
+ionization -3  
+init file "ism.ini"  
+stop zone 10  
+iterate  
+atom h-like levels 100 element hydrogen   
+print diffuse continuum    
+print line faint off   
+save overview last ".ovr"  
+save hydrogen lines last ".hlin"  
+save hydrogen populations last ".hpop"  
+save hydrogen 21cm last ".21cm"  
+c ======================
+ This input stream included an init file.
+ If this init file is not part of the standard Cloudy distribution
+ then I will need a copy of it too.
+ [Stop in SanityCheckBegin at sanity_check.cpp:833, something went wrong]

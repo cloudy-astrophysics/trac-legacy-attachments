@@ -1,0 +1,12 @@
+coronal equilium 2.1
+cosmic rays background
+stop temperature off
+radius 17.5
+hden 4.0
+abundances ISM
+atom H2
+stop zone 1
+save cooling "cooling.out"
+save overview "overview.out"
+save heating "heating.out"
+Save molecules "molecules.out"

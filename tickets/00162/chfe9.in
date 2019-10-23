@@ -1,0 +1,17 @@
+coronal equilibrium 6
+element iron ionization -2 -2 -2 -2 -2 -2 -2 -2 0 -2 -2 - 2 
+print line column
+print line sort wavelength 
+print line faint 1 
+print cooling 
+c 
+set chianti on
+init "elementoff.ini"
+hden -15
+element iron abundance 15
+set eden 0 
+set dr 0
+stop zone 1
+save cooling "chfe9.col" last no hash 
+save grid "chfe9.grd" last no hash 
+save continuum unites angstroms  "chfe9.con" last no hash 

@@ -1,0 +1,11 @@
+table star CoStar, temp=34000, index 2 
+IONIZATION PARAMETER=-4.000000
+HDEN=3.000000
+constant pressure 
+CMB 
+cosmic rays background 
+abundance Orion 
+grains PAH 
+stop AV 15 
+set nend 50000 
+stop temperature 5 linear 

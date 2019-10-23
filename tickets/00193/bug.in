@@ -1,0 +1,12 @@
+                       * element lithium off                                                             *
+                       * element berylium off                                                            *
+                       * element boron off                                                               *
+                       * cosmic rays background                                                          *
+                       * cmb                                                                             *
+                       * c                                                                               *
+                       * blackbody 6                                                                     *
+                       * ENERGY DENSITY 6.000000 LOG                                                     *
+                       * c -8 18                                                                         *
+                       * HDEN=-8.000000 LOG                                                              *
+                       * stop zone 1                                                                     *
+                       * set dr 0                                                                        *

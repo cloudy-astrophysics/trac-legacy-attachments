@@ -1,0 +1,139 @@
+Index: source/init_defaults_preparse.cpp
+===================================================================
+--- source/init_defaults_preparse.cpp	(revision 4054)
++++ source/init_defaults_preparse.cpp	(working copy)
+@@ -274,7 +274,6 @@
+ 	/* default is to conserve energy, reset with
+ 	 * set save line width / resolution command */
+ 	save.Resolution = realnum(-1.);
+-	save.ResolutionAbs = realnum(-1.);
+ 
+ 	/* default no printing of optical depths, TooFaint is .1 */
+ 	prt.lgPrtTau = false;
+Index: source/cdspec.cpp
+===================================================================
+--- source/cdspec.cpp	(revision 4054)
++++ source/cdspec.cpp	(working copy)
+@@ -236,7 +236,7 @@
+ 		{
+ 			/* the attenuated incident continuum */
+ 			realnum flxatt = rfield.flux[0][j]*
+-				(realnum)radius.r1r0sq * rfield.trans_coef_total[j];
++				(realnum)radius.r1r0sq;
+ 
+ 			/* the outward emitted continuum */
+ 			realnum conem = (rfield.ConEmitOut[0][j] + rfield.outlin[0][j])*
+@@ -257,7 +257,7 @@
+ 			/* the attenuated transmitted continuum, no diffuse emission,
+ 			 * col 3 of save continuum command */
+ 			ReturnedSpectrum[i] = rfield.flux[0][j]*
+-				(realnum)radius.r1r0sq * rfield.trans_coef_total[j];
++				(realnum)radius.r1r0sq;
+ 		}
+ 		else if( nOption == 3 )
+ 		{
+@@ -312,7 +312,7 @@
+ 			/* correct back to inner radius */
+ 			refac = (realnum)radius.r1r0sq*geometry.covgeo;
+ 			ReturnedSpectrum[i] = (rfield.ConEmitOut[0][j]+ rfield.outlin[0][j])*refac
+-				+ rfield.flux[0][j]*(realnum)radius.r1r0sq*rfield.trans_coef_total[j];
++				+ rfield.flux[0][j]*(realnum)radius.r1r0sq;
+ 		}
+ 		else if( nOption == 9 )
+ 		{
+Index: source/save_do.cpp
+===================================================================
+--- source/save_do.cpp	(revision 4054)
++++ source/save_do.cpp	(working copy)
+@@ -68,20 +68,6 @@
+ #include "warnings.h"
+ #include "grid.h"
+ 
+-// implements the absorption option on the
+-// set save line width command
+-inline realnum PrettyTranmission(long j, realnum transmission)
+-{
+-	if( save.ResolutionAbs < realnum(0.) )
+-		// option to conserve energy
+-		return transmission;
+-	else
+-	{
+-		realnum corr = save.ResolutionAbs*rfield.widflx[j]/rfield.anu[j];
+-		return realnum(max(0., 1. - (1.-transmission)*corr ));
+-	}
+-}
+-
+ /*PunResults1Line do single line of output for the save results and save line intensity commands */
+ /* the number of emission lines across one line of printout */
+ STATIC void PunResults1Line(
+@@ -471,7 +457,7 @@
+ 
+ 						/* the incident continuum */
+ 						flxin = rfield.flux_total_incident[nEmType][j]*rfield.anu2[j]*
+-						  EN1RYD/rfield.widflx[j];
++							EN1RYD/rfield.widflx[j];
+ 
+ 						// a value < 0. indicates that energy should be conserved
+ 						realnum resolution = ( save.Resolution < realnum(0.) ) ?
+@@ -483,8 +469,7 @@
+ 
+ 						/* the attenuated incident continuum */
+ 						flxatt = rfield.flux[nEmType][j]*rfield.anu2[j]*EN1RYD/
+-						  rfield.widflx[j]*radius.r1r0sq * 
+-							PrettyTranmission( j, rfield.trans_coef_total[j] );
++							rfield.widflx[j]*radius.r1r0sq; 
+ 
+ 						/* the outward emitted continuum */
+ 						conem = (rfield.ConEmitOut[nEmType][j]/
+@@ -1047,7 +1032,7 @@
+ 						 * we must conserve energy even in lines 
+ 						 * >>chng 07 apr 26 include transmission coefficient */
+ 						flxatt = rfield.flux[0][j]*rfield.anu2[j]*EN1RYD/
+-						  rfield.widflx[j]*radius.r1r0sq*rfield.trans_coef_total[j];
++							rfield.widflx[j]*radius.r1r0sq;
+ 
+ 						/*conem = (rfield.ConOutNoInter[j] + rfield.ConInterOut[j]+rfield.outlin[0][j])*
+ 						  rfield.anu2[j];
+Index: source/rt_continuum.cpp
+===================================================================
+--- source/rt_continuum.cpp	(revision 4054)
++++ source/rt_continuum.cpp	(working copy)
+@@ -258,7 +258,7 @@
+ 		}
+ 
+ 		// DilutionHere is square of ratio of inner to outer radius
+-		double AttenuationDilutionFactor = opac.ExpZone[i]*DilutionHere;
++		double AttenuationDilutionFactor = opac.ExpZone[i]*DilutionHere*rfield.trans_coef_zone[i];
+ 		ASSERT( AttenuationDilutionFactor <= 1.0 );
+ 
+ 		// continuum has three parts 
+Index: source/save.h
+===================================================================
+--- source/save.h	(revision 4054)
++++ source/save.h	(working copy)
+@@ -280,9 +280,6 @@
+ 	* default is 1 (gives correct line intensities) and changed with
+ 	* set width command (enters width in km/sec) */
+ 	realnum Resolution;
+-	// same thing but for absorption lines - default is unity, set to
+-	// SaveLWidth if ABSORPTION keyword occurs on save line width command
+-	realnum ResolutionAbs;
+ 
+ 	} save;
+ 
+Index: source/parse_set.cpp
+===================================================================
+--- source/parse_set.cpp	(revision 4054)
++++ source/parse_set.cpp	(working copy)
+@@ -1709,11 +1709,6 @@
+ 					/* FWHM in km/s */
+ 					save.Resolution = realnum(SPEEDLIGHT/(number*1.e5));
+ 			}
+-
+-			// option to do exactly the same thing with absorption lines
+-			// keyword is absorption 
+-			if( p.nMatch("ABSO") )
+-				save.ResolutionAbs = save.Resolution;
+ 		}
+ 
+ 		else if( p.nMatch("PREF") )

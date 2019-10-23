@@ -1,0 +1,9 @@
+AGN 150000k -1.4 -1.7 -0.7  
+IONIZATION PARAMETER=-1.000000 vary
+grid from -3 to 0 in 0.5 dex steps  
+hden 3.17  
+abundances ism  
+METALS LOG=1.750000 GRAINS vary
+grid from 0.25 to 4.0 in 0.5 dex steps  
+print line column  
+stop column density 22  

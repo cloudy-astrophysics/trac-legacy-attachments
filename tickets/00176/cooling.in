@@ -1,0 +1,12 @@
+                       * table agn                                                                       *
+                       * ionization parameter -10                                                        *
+                       * cosmic rays background                                                          *
+                       * stop temperature off                                                            *
+                       * radius 17.5                                                                     *
+                       * hden 13.0                                                                       *
+                       * stop column density 27.66                                                       *
+                       * hextra -9 depth 13                                                              *
+                       * iterate                                                                         *
+                       * double                                                                          *
+                       * save cooling "cooling.out" last                                                 *
+                       * save overview "temperature.out"                                                 *

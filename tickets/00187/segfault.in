@@ -1,0 +1,18 @@
+sphere
+iterate
+stop pfrac 0.01
+blackbody 30000
+q(h) = 47.
+hden 2.5
+radius= 16.000
+abundances orion
+C no induced processes
+Atom H-like Lyman pumping scale .2
+punch last physical conditions "bbfl2_c10p20.phy"
+punch last lines emissivity "bbfl2_c10p20.str"
+H  1  6563A
+H  1  4861A
+H  1  4340A
+H  1  4102A
+H  1  3970A
+end of line
