@@ -1,0 +1,28 @@
+set save prefix "nobkg_"
+########### backgrounds
+#background, z=1, no CMB
+#
+########### shape of considered galaxy
+table AGN T=1.5e5 k, a(ox)=-1.4, a(uv)=-0.5, a(x)=-1
+Q(h) 48 % vary
+#
+########### gas
+#sphere
+hden 15
+metallicity -1
+abundance ism, no qheat
+radius 22 cm        % 2kpc from qso
+#stop thickness 23 cm % 40kpc thick
+#
+########### grid
+%grid 46 50 .5
+iterate % to convergence
+#
+stop zone 1
+########### saved files
+
+
+save continuum "projectV1.con" units microns
+save cooling "projectV1.col"
+save grid "projectV1.grd"
+save overview "projectV1.ovr" no hash

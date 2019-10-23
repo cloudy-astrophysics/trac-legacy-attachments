@@ -1,0 +1,26 @@
+Index: zone_startend.cpp
+===================================================================
+--- zone_startend.cpp	(revision 9924)
++++ zone_startend.cpp	(working copy)
+@@ -20,6 +20,7 @@
+ #include "doppvel.h"
+ #include "mole.h"
+ #include "cosmology.h"
++#include "lines.h"
+ /* this is number of zones to include in guess for next temperatures */
+ #define	IOFF	3
+ 
+@@ -111,6 +112,13 @@
+ 	}
+ 	else if( strcmp(chMode,"incr") == 0 )
+ 	{
++		// make sure that emissivities are zeroed, may not be 
++		// done elsewhere when ionization stages are trimmed off 
++		for( long ii=0; ii < LineSave.nsum; ++ii ) 
++		{ 
++			LineSave.lines[ii].emslinZero(); 
++		} 
++
+ 		/* update radius variables - called by cloudy at start of this zone's calcs */
+ 		radius.drad_mid_zone = (radius.drad+radius.drNext)/2.;
+ 		radius.drad = radius.drNext;

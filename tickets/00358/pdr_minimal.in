@@ -1,0 +1,56 @@
+table draine 50000
+extinguish 24
+#
+#  This sets the temperature to a constant 50 Kelvin
+constant temperature 50 linear
+#  hydrogen density 
+hden 5.5
+stop zone 2
+# no molecules
+# no induced processes
+# no charge transfer
+##
+## CONTENTS OF pdr_leiden.ini
+##
+## make sure there is no ionized hydrogen that is due to
+## anything but photoionization from
+## the n=1 level at the face 
+## >>chng 16 apr 14, had been case B, this gets same effect with
+## no large Lyman optical depths
+stop temperature 3 linear
+element helium abundance -1.00  
+element carbon	off
+element oxygen	off
+element iron        off
+## Set the Nitrogen abundance to an insignificant value,
+## this is done because logic in mole_co_drive will not calculate
+## molecular abundances if nitrogen abundance is SMALLFLOAT
+## >>chng turn on N, Si, S and Cl since needed for chem
+# element nitrogen off 
+element silicon off
+element sulphur off
+element chlorine    off  
+element sodium      off  
+element magnesium   off  
+element lithium     off  
+element calcium     off 
+element manganese   off  
+element aluminum    off  
+element phosphorus  off 
+element potassium   off 
+element titanium    off  
+element chromium    off  
+element nickel      off  
+element zinc        off
+element cobalt      off 
+element neon        off  
+element fluorine    off 
+element vanadium    off  
+element copper      off  
+element scandium    off  
+element boron       off
+element beryllium   off 
+element argon       off  
+##
+save overview ".ovr" last
+save molecules ".mol" last

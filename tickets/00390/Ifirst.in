@@ -1,0 +1,6 @@
+blackbody 1e5 K
+ionization -2
+radius 20.0088
+hden 1.0
+stop zone 1
+save transmitted continuum file = "Ifirst.trn" last

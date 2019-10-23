@@ -1,0 +1,22 @@
+set save prefix "coronalN1"
+print lines column
+element  limit -0.4 off
+no induced
+set HCORR 0 
+# ionization parameter -1.5
+# laser 1.1
+# constant temperature 5
+coronal 5
+case b
+print departure hydrogen H-like
+hden 1
+set dr 0
+set nend 1
+stop zone 1
+atom H-like hydrogen levels resolved 60
+atom H-like hydrogen levels collapsed 2
+save grid ".grd"
+save overview ".ovr" no hash last
+save species departure coefficients ".dep" last no hash
+"H[90]"
+end

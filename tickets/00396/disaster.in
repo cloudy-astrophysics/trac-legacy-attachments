@@ -1,0 +1,9 @@
+                       * title test sed                                                                  *
+                       * table star "inst_m1e6_Z004.mod" age 6.303 log                                   *
+                       * intensity log 2.18520                                                           *
+                       * hden 0                                                                          *
+                       * covering factor 1.0 linear                                                      *
+                       * radius 1                                                                        *
+                       * set dr 0                                                                        *
+                       * stop zone 1                                                                     *
+                       * punch incident continuum "_con0.ascii" units Angstroms                          *

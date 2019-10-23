@@ -1,0 +1,16 @@
+set save prefix "sdr"
+set dr 0 
+table HM05, z=1.22
+CMB, z=1.22
+constant temperature, t=1e3K
+hden -4
+metallicity 1 linear   ;solar
+no molecules
+abundances "solar_GASS10.abn" no grains
+stop zone 1
+save grid ".grd" last no hash
+save overview ".ovr" last no hash
+save line emissivity last, ".em", no hash
+H  1 1215.68A
+end of lines
+

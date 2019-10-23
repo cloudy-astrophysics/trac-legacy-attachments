@@ -1,0 +1,27 @@
+title "BB teff 1000000 hden 2.5 nlyc 50.0 radius 0.01 Model 1000"
+save lines array last units micron title "save_bb1000"           
+print line precision 5
+blackbody 6 luminosity=36                                        
+cosmic ray background                                            
+table ISM                                                        
+abundances HII region                                            
+element carbon abundance -3.426                                  
+element nitrogen abundance -3.8665                               
+element oxygen abundance -3.0969                                 
+element neon abundance -3.6990                                   
+element silicon abundance -4.523                                 
+element sulphur abundance -4.8539                                
+element argon abundance -5.301                                   
+element iron abundance -5.523                                    
+sphere static                                                    
+radius 0.01 parsec linear                                        
+hden 2.5                                                         
+stop temperature 10. linear                                      
+stop efrac -3                                                    
+print last iteration                                             
+norm 12.368m 1 "H  1"                                            
+print line sort wavelength range 2.0m to 300.0m                  
+save lines emissivity units micron title "lines_bb_1000"         
+O  4 25.8832m
+end
+iterate                                                          

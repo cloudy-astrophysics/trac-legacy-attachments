@@ -1,0 +1,135 @@
+Index: source/atmdat_readin.cpp
+===================================================================
+--- source/atmdat_readin.cpp	(revision 11071)
++++ source/atmdat_readin.cpp	(working copy)
+@@ -117,7 +117,7 @@
+ 	init_struc();
+ 
+ 	/* allocate space for some arrays used by dynamics routines, and zero out vars */
+-	DynaCreateArrays( );
++	DynaCreateArrays();
+ 
+ 	/*************************************************************
+ 	 *                                                           *
+@@ -425,6 +425,8 @@
+ 
+ 	char chLine[FILENAME_PATH_LENGTH_2] = { 0 };
+ 
++	int nActive = 0;
++
+ 	/* now get the actual data */
+ 	for( long i=0; i < nWindLine; ++i )
+ 	{
+@@ -449,17 +451,25 @@
+ 				  &tt[4] ,
+ 				  &tt[5] ,
+ 				  &tt[6] );
++
++		int nelem = int( tt[0] );
++		if( ! dense.lgElmtOn[ nelem - 1 ] )
++			continue;
++
+ 		/* these are readjusted into their final form in the structure 
+ 		 * in routine lines_setup*/
+-		(*TauLine2[i].Hi()).nelem() = (int)tt[0];
+-		(*TauLine2[i].Hi()).IonStg() = (int)tt[1];
+-		(*TauLine2[i].Lo()).g() = (realnum)tt[2];
+-		(*TauLine2[i].Hi()).g() = (realnum)tt[3];
+-		TauLine2[i].Emis().gf() = (realnum)tt[4];
+-		TauLine2[i].EnergyWN() = (realnum)tt[5];
+-		cs1_flag_lev2[i] = (realnum)tt[6];
++		(*TauLine2[ nActive ].Hi()).nelem() = nelem;
++		(*TauLine2[ nActive ].Hi()).IonStg() = (int)tt[1];
++		(*TauLine2[ nActive ].Lo()).g() = (realnum)tt[2];
++		(*TauLine2[ nActive ].Hi()).g() = (realnum)tt[3];
++		TauLine2[ nActive ].Emis().gf() = (realnum)tt[4];
++		TauLine2[ nActive ].EnergyWN() = (realnum)tt[5];
++		cs1_flag_lev2[ nActive ] = (realnum)tt[6];
++		nActive++;
+ 	}
+ 
++	nWindLine = nActive;
++
+ 	/* get magic number off last line */
+ 	if( read_whole_line( chLine , (int)sizeof(chLine) , ioDATA ) == NULL )
+ 	{
+@@ -1433,6 +1443,9 @@
+ 	{
+ 		for( long nelem=ipISO; nelem < LIMELM; ++nelem )
+ 		{
++			if( ! dense.lgElmtOn[ nelem ] )
++				continue;
++
+ 			// ion = 0 for neutral atom
+ 			long ion = nelem - ipISO;
+ 			strcpy( chUTA_ref[nelem][ion] , "B" );
+@@ -1486,6 +1499,7 @@
+ 	(*BlankLine).Junk();
+ 
+ 	/* next read in the Gu file */
++	if( dense.lgElmtOn[ ipIRON ] )
+ 	{
+ 		/* read the Gu et al. (2006) data
+ 		 * >>refer	Fe	UTA	Gu, M. F., Holczer T., Behar E., & Kahn S. M. 2006, ApJ 641, 1227-1232 */
+@@ -1606,7 +1620,7 @@
+ 			fprintf( ioQQQ, " reading UTA_Gu06.dat OK\n" );
+ 	}
+ 
+-	if( atmdat.lgInnerShell_Kisielius )
++	if( dense.lgElmtOn[ ipIRON ] && atmdat.lgInnerShell_Kisielius )
+ 	{
+ 		/* last read in the Romas Kisielius data
+ 		 *>>refer	Fe	UTA	Kisielius, R., Hibbert, A.. Ferland, G. J., et al. 2003, MNRAS, 344, 696 */
+Index: source/species.cpp
+===================================================================
+--- source/species.cpp	(revision 11071)
++++ source/species.cpp	(working copy)
+@@ -40,6 +40,20 @@
+ STATIC void set_fractionation( species *sp );
+ STATIC void states_propprint(void);
+ 
++STATIC bool isSpeciesOn( const char *chSpecies )
++{
++	bool isOn = false;
++	char chSym[3] = { 0 };
++	strncpy( chSym, chSpecies, 2 );
++	int ielem = nelem_symbol_to_index( chSym );
++	//	fprintf( ioQQQ, "chSym = '%s'\t ielem = %d\n",
++	//		chSym, ielem );
++	if( ielem == -1 )
++		return isOn;
++	else
++		return dense.lgElmtOn[ ielem ];
++}
++
+ #define DEBUGSTATE false
+ void database_readin( void )
+ {
+@@ -414,6 +428,10 @@
+ 
+ 				// now capitalize the first letter
+ 				chLabels[nSpecies][0] = toupper( chLabels[nSpecies][0] );
++
++				if( ! isSpeciesOn( chLabels[ nSpecies ] ) )
++					continue;
++
+ 				++nSpecies;
+ 				++nSpeciesSTOUT;
+ 			}
+@@ -639,6 +657,10 @@
+ 
+ 					// now capitalize the first letter
+ 					chLabels[nSpecies][0] = toupper( chLabels[nSpecies][0] );
++
++					if( ! isSpeciesOn( chLabels[ nSpecies ] ) )
++						continue;
++
+ 					++nSpecies;
+ 					++nSpeciesCHIANTI;
+ 				}
+@@ -1183,3 +1205,5 @@
+ 	}
+ 	return;
+ }
++
++#undef DEBUGSTATE

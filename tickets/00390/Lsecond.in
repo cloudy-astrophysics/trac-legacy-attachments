@@ -1,0 +1,4 @@
+table read "Lfirst.trn" scale = 1
+radius 22
+hden 3
+stop zone 1

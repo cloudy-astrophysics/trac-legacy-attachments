@@ -1,0 +1,15 @@
+set save prefix "clower"
+init "hheonly.ini"
+hden -5
+element helium abundance 5 
+constant temperature 4.9
+database H-like levels collapsed 50
+database He-like levels collapsed 50
+%database H-like continuum lowering off
+%database He-like continuum lowering off
+eden 1 vary
+grid 1 20 .25
+stop zone 1
+set dr 0 
+save element helium ".hel" last no hash
+save grid ".grd" last no hash

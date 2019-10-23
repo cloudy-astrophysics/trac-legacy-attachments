@@ -1,0 +1,126 @@
+Index: data/stout/masterlist/Stout.ini
+===================================================================
+--- data/stout/masterlist/Stout.ini	(revision 11729)
++++ data/stout/masterlist/Stout.ini	(working copy)
+@@ -286,7 +286,8 @@
+ ni_7  
+ #n ni_8  
+ ni_9  
+-o_1  
++# use 29 levels for O I to get the Ly beta pumping right and recover old 6lev atom
++o_1  29
+ o_2  
+ o_3  
+ #c o_4  
+Index: data/stout/masterlist/StoutAll.ini
+===================================================================
+--- data/stout/masterlist/StoutAll.ini	(revision 11729)
++++ data/stout/masterlist/StoutAll.ini	(working copy)
+@@ -159,7 +159,7 @@
+ fe_17  
+ fe_18  
+ fe_19  
+-fe_2  
++fe_2 80
+ fe_20  
+ fe_21  
+ fe_22  
+@@ -221,7 +221,9 @@
+ mn_6  
+ mn_8  
+ mn_9  
+-n_1  
++# use 50 levels for N I to get the continuum pumping discussed in
++# >>refer	 Ferland et al., 2012, ApJ 757, 79
++n_1  50
+ n_2  
+ n_3  
+ n_4  
+@@ -268,7 +270,8 @@
+ ni_7  
+ #n ni_8  
+ ni_9  
+-o_1  
++# use 29 levels for O I to get the Ly beta pumping right and recover old 6lev atom
++o_1  29
+ o_2  
+ o_3  
+ o_5  
+Index: source/atmdat_chianti.cpp
+===================================================================
+--- source/atmdat_chianti.cpp	(revision 11729)
++++ source/atmdat_chianti.cpp	(working copy)
+@@ -131,11 +131,6 @@
+ 		// Fe is special case with more levels
+ 		nMolLevs = MIN3(nMolLevs, atmdat.nStoutMaxLevelsFe, MAX_NUM_LEVELS );
+ 	}
+-	else if( tolower(dBaseSpecies[intNS].chLabel[0]) == 'o' && dBaseSpecies[intNS].chLabel[3] == '1')
+-	{
+-		// O  1 needs more levels for H Lyman Beta
+-		nMolLevs = MIN3(nMolLevs, atmdat.nDefaultPhotoLevelsFe, MAX_NUM_LEVELS );
+-	}
+ 	else
+ 	{
+ 		nMolLevs = MIN3(nMolLevs, atmdat.nStoutMaxLevels, MAX_NUM_LEVELS );
+Index: source/prt_lines.cpp
+===================================================================
+--- source/prt_lines.cpp	(revision 11729)
++++ source/prt_lines.cpp	(working copy)
+@@ -431,6 +431,57 @@
+ 
+ 	linadd( 0., (realnum)i , "####", 'i' ,	"blends ");
+ 
++	/**************Oxygen Blends *********************/
++	LinSv *lineO1_8446 = linadd(0.0,8446,"Blnd",'i',"Blend" );
++	LinSv *lineO1_1304 = linadd(0.0,1304,"Blnd",'i',"Blend" );
++	LinSv *lineO1_1039 = linadd(0.0,1039,"Blnd",'i',"Blend" );
++	LinSv *lineO1_4368 = linadd(0.0,4368,"Blnd",'i',"Blend" );
++	LinSv *lineO1_13100 = linadd(0.0,13100,"Blnd",'i',"Blend" );
++	LinSv *lineO1_11300 = linadd(0.0,11300,"Blnd",'i',"Blend" );
++	LinSv *lineO1_29000 = linadd(0.0,29000,"Blnd",'i',"Blend" );
++	LinSv *lineO1_46000 = linadd(0.0,46000,"Blnd",'i',"Blend" );
++	if (atmdat.lgdBaseSourceExists[ipOXYGEN][0])
++	{
++		// these are the equivalents of the 6lev lines in c13 and before
++		lineO1_8446->addComponent("O  1",8446.25);
++		lineO1_8446->addComponent("O  1",8446.36);
++		lineO1_8446->addComponent("O  1",8446.76);
++
++		lineO1_1304->addComponent("O  1",1302.17);
++		lineO1_1304->addComponent("O  1",1304.86);
++		lineO1_1304->addComponent("O  1",1306.03);
++
++		lineO1_1039->addComponent("O  1",1039.23);
++		lineO1_1039->addComponent("O  1",1040.94);
++		lineO1_1039->addComponent("O  1",1041.69);
++
++		lineO1_4368->addComponent("O  1",4368.19);
++		lineO1_4368->addComponent("O  1",4368.24);
++		lineO1_4368->addComponent("O  1",4368.26);
++
++		lineO1_13100->addComponent("O  1",13163.9);
++		lineO1_13100->addComponent("O  1",13164.9);
++		lineO1_13100->addComponent("O  1",13165.1);
++
++		lineO1_11300->addComponent("O  1",11286.3);
++		lineO1_11300->addComponent("O  1",11286.4);
++		lineO1_11300->addComponent("O  1",11286.9);
++		lineO1_11300->addComponent("O  1",11287.0);
++		lineO1_11300->addComponent("O  1",11287.1);
++		lineO1_11300->addComponent("O  1",11287.3);
++
++		lineO1_29000->addComponent("O  1",28925.1);
++		lineO1_29000->addComponent("O  1",28927.3);
++		lineO1_29000->addComponent("O  1",28928.0);
++
++		lineO1_46000->addComponent("O  1",45588.6);
++		lineO1_46000->addComponent("O  1",45594.0);
++		lineO1_46000->addComponent("O  1",45595.5);
++		lineO1_46000->addComponent("O  1",45595.7);
++		lineO1_46000->addComponent("O  1",45597.2);
++		lineO1_46000->addComponent("O  1",45597.4);
++	}
++	
+ 	/*************Magnesium Blends *******************/
+ 	LinSv *lineMg2 = linadd(0.0,2798,"Blnd",'i',"Blend" );
+ 	if (atmdat.lgdBaseSourceExists[ipMAGNESIUM][1])
