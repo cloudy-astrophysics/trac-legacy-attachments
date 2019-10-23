@@ -1,0 +1,90 @@
+set check energy every zone 
+* filling factor 0.01
+* atom H2
+* atom FeII
+save overview "noff_h2_fe2.ovr"
+save heating  "noff_h2_fe2.het"
+save cooling  "noff_h2_fe2.col"
+c ======================
+title model starbust-test
+ionization parameter, -2.5
+hden 4
+normalise to "H  1" 4861 scale factor= 100
+metals scale 1.00
+grains scale 1.0
+element iron scale 0.1
+element magnesium scale 0.1
+element aluminium scale 0.1
+element calcium scale 0.1
+element sodium scale 0.1
+element nickel scale 0.1
+element silicon scale 0.5
+iterate 2
+interpole
+continue(5.69868036 -25.528)
+continue(8.56229286 -18.066)
+continue(9.14612804 -17.853)
+continue(9.37657696 -17.790)
+continue(9.68574174 -17.769)
+continue(10.363612 -16.9546)
+continue(10.463612 -16.7478)
+continue(10.563612 -16.5338)
+continue(10.663612 -16.3198)
+continue(10.763612 -16.1058)
+continue(10.863612 -15.8918)
+continue(10.963612 -15.6778)
+continue(11.063612 -15.4638)
+continue(11.163612 -15.2498)
+continue(11.263612 -15.0358)
+continue(11.363612 -14.8218)
+continue(11.463612 -14.6078)
+continue(11.563612 -14.3938)
+continue(11.663612 -14.1798)
+continue(11.763612 -13.9658)
+continue(11.863612 -13.7518)
+continue(11.963612 -13.5378)
+continue(12.063612 -13.3238)
+continue(12.163612 -13.1098)
+continue(12.263612 -12.8958)
+continue(12.363612 -12.6818)
+continue(12.4771213 -12.438)
+continue(12.69897 -12.26042)
+continue(13.0791812 -12.567)
+continue(13.39794 -12.95078)
+continue(14.1398791 -13.166)
+continue(14.2600714 -13.036)
+continue(14.3802112 -13.047)
+continue(14.5563025 -12.769)
+continue(14.6702459 -12.866)
+continue(14.744293 -12.9706)
+continue(14.8331471 -12.749)
+continue(14.845718 -13.1931)
+continue(14.9580858 -13.625)
+continue(15.0580858 -13.691)
+continue(15.1580858 -13.779)
+continue(15.2580858 -13.867)
+continue(15.3580858 -13.955)
+continue(15.4580858 -14.043)
+continue(15.5580858 -14.131)
+continue(15.6580858 -14.219)
+continue(15.7580858 -14.307)
+continue(15.8580858 -14.395)
+continue(15.9580858 -14.483)
+continue(16.0580858 -14.571)
+continue(16.1580858 -14.659)
+continue(16.2580858 -14.747)
+continue(16.3580858 -14.835)
+continue(16.4580858 -14.923)
+continue(16.5580858 -15.011)
+continue(16.6580858 -15.099)
+continue(16.7580858 -15.187)
+continue(16.8580858 -15.275)
+continue(16.9580858 -15.363)
+continue(17.0580858 -15.451)
+continue(17.1580858 -15.539)
+continue(17.2580858 -15.627)
+continue(17.3580858 -15.715)
+continue(17.4800069 -15.853)
+continue(18.161368 -15.4436)
+continue(50.7778616 -25.193)
+c ======================

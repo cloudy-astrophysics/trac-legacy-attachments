@@ -1,0 +1,12 @@
+blackbody 35000
+luminosity total solar linear 6000
+hden = 4.15
+radius = 17.25
+constant temperature 4
+stop zone 1
+set punch prefix "caps"
+punch last lines emissivity ".emis"
+H  1  4861
+He 1  3820
+AR 3  5192
+end of lines

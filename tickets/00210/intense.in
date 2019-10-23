@@ -1,0 +1,8 @@
+radius 18.0                                                                     *
+table star "Massive-stars-30dor-selman1999.mod" age=6.7
+                       * luminosity 43.5                                                                 *
+                       * hden 5.0                                                                        *
+                       * stop temperature 5 exceeds                                                      *
+                       * stop zone 1                                                                     *
+                       * abundances old solar 84                                                         *
+ 

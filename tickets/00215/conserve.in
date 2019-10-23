@@ -1,0 +1,13 @@
+radius 0.1 500 linear parsec 
+sphere 
+table star wmbasic, teff=34000, log(g)=4, log(z)=0 
+IONIZATION PARAMETER= -4.000000 LOG
+HDEN=3.000000 LOG
+constant pressure 
+cosmic rays background 
+abundance orion 
+grains PAH 
+set nend 30000 
+stop temperature 1 linear 
+stop thickness 20.5 
+* iterate to convergence 
