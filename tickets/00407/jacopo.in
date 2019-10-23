@@ -1,0 +1,8 @@
+black 1e5
+hden 2.0
+radius 16.5
+luminosity 36.2
+set continuum resolution 0.05
+iterate
+stop temperature 100K
+stop efrac 0.01

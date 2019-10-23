@@ -1,0 +1,11 @@
+black 20000
+lumi 36
+radi 18
+hden 4
+stop zone 1
+#
+init file "honly.ini"
+#
+database h-like resolved levels 30
+database h-like collapsed levels 70
+set continuum resolution 10

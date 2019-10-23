@@ -1,0 +1,11 @@
+set save prefix "assert"  
+save performance ".per"
+save overview ".ovr"
+TURBULENCE= 0.750000 LOG 3.000000 
+species "Fe+" dataset="Smyth19"  
+species "Fe+" levels=all        
+stop column density 23        
+# iterate                   
+hden 15                  
+table SED "AGN_Jin12_Eddr_mid.sed" 
+phi(H) 23                         
